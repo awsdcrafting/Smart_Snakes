@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ce2f187-6bfc-449d-b0d3-a372a3f5d6a5" name="Default Changelist" comment="" />
+    <list default="true" id="8ce2f187-6bfc-449d-b0d3-a372a3f5d6a5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +20,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
+            <state>
               <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
             </state>
           </provider>
@@ -46,15 +48,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Concept">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="65" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="830">
@@ -62,6 +55,23 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Smart Snakes.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="51">
+                <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -112,6 +122,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -313,18 +324,26 @@
       <workItem from="1560670075131" duration="27000" />
       <workItem from="1560677363911" duration="958000" />
       <workItem from="1560695572346" duration="3876000" />
-      <workItem from="1560700420085" duration="429000" />
+      <workItem from="1560700420085" duration="1041000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Processing to readme">
+      <created>1560701243708</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1560701243708</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25372000" />
+    <option name="totallyTimeSpent" value="25984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48390445" visible="true" weight="0.2046332" />
-      <window_info id="Structure" order="1" sideWeight="0.5160955" side_tool="true" visible="true" weight="0.2046332" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48297215" visible="true" weight="0.2046332" />
+      <window_info id="Structure" order="1" sideWeight="0.51702785" side_tool="true" visible="true" weight="0.2046332" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -338,7 +357,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32917964" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -356,6 +375,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Processing to readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Processing to readme" />
   </component>
   <component name="editorHistoryManager">
     <entry file="uml://JAVA/com.buckfae">
@@ -387,7 +410,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state>
           <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
         </state>
       </provider>
@@ -443,6 +466,19 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Smart Snakes.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="51">
+            <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
