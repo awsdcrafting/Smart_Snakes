@@ -21,7 +21,7 @@ public class Snake {
     //All the fields of the snake
     ArrayList<Integer[]> fields;
 
-    boolean make_a_move = true;
+    boolean make_a_move = false;
 
 
     public Snake(Game game) {
@@ -32,13 +32,13 @@ public class Snake {
 
         //Used to give the snake a random start position
         Random random = new Random();
-        int random_x_pos = random.nextInt(game.fields.length - 5);
-        int random_y_pos = random.nextInt(game.fields.length - 5);
+        int random_x_pos = random.nextInt(game.fields.length - 5) + 2;
+        int random_y_pos = random.nextInt(game.fields.length - 5) + 2;
 
         //Sets the coordinates of the field
         for (int i = 0; i < initial_length; i++) {
 
-            fields.add(0, new Integer[]{random_x_pos + i, random_y_pos});
+            fields.add(0, new Integer[]{random_x_pos, random_y_pos + i});
             game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
         }
     }
@@ -51,17 +51,86 @@ public class Snake {
         //We are allolwed to move (controlled by Processing)
         if (make_a_move) {
 
-
+            //We will pass these later to our brain to get the direction to move
             double input_values[][] = get_input_values();
 
+            //New coordinates of the new frontfield
+            int[] new_front_field_coordinates_modifier = {0, 0};
+
             //Later the brain gives us the direction
-            int direction_to_move = 0;
+            int direction_to_move = 2;
+
+            //Depending on where we have to go next and where we are looking at we determine the coordinates of the new frontfield
+            switch(direction_to_move){
+                //Looking towards: 0 up, 1 right, 2 down, 3 left
+                case 0: //Ahead
+                    switch (looking_towards){
+                        case 0: //Up
+                            new_front_field_coordinates_modifier[1] = -1;
+                            looking_towards = 0;
+                            break;
+                        case 1: //Right
+                            new_front_field_coordinates_modifier[1] = -1;
+                            looking_towards = 1;
+                            break;
+                        case 2: //Down
+                            new_front_field_coordinates_modifier[1] = +1;
+                            looking_towards = 2;
+                            break;
+                        case 3: //Left
+                            new_front_field_coordinates_modifier[0] = -1;
+                            looking_towards = 3;
+                            break;
+                    }
+                    break;
+                case 1: //Left
+                    switch (looking_towards){
+                        case 0: //Up
+                            new_front_field_coordinates_modifier[0] = -1;
+                            looking_towards = 3;
+                            break;
+                        case 1: //Right
+                            new_front_field_coordinates_modifier[1] = -1;
+                            looking_towards = 0;
+                            break;
+                        case 2: //Down
+                            new_front_field_coordinates_modifier[0] = +1;
+                            looking_towards = 1;
+                            break;
+                        case 3: //Left
+                            new_front_field_coordinates_modifier[1] = +1;
+                            looking_towards = 2;
+                            break;
+                    }
+                    break;
+                case 2: //Right
+                    switch (looking_towards){
+                        case 0: //Up
+                            new_front_field_coordinates_modifier[0] = +1;
+                            looking_towards = 1;
+                            break;
+                        case 1: //Right
+                            new_front_field_coordinates_modifier[1] = +1;
+                            looking_towards = 2;
+                            break;
+                        case 2: //Down
+                            new_front_field_coordinates_modifier[0] = -1;
+                            looking_towards = 3;
+                            break;
+                        case 3: //Left
+                            new_front_field_coordinates_modifier[1] = -1;
+                            looking_towards = 0;
+                            break;
+                    }
+                    break;
+
+            }
 
             //Adds the new field, color will be set later
-            fields.add(0, new Integer[]{fields.get(0)[0], fields.get(0)[1] + 1});
+            fields.add(0, new Integer[]{fields.get(0)[0] + new_front_field_coordinates_modifier[0], fields.get(0)[1] + new_front_field_coordinates_modifier[1]});
             game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
 
-            //Sets the field back to white, then removes it
+            //Sets last field back to white, then removes it
             game.fields[fields.get(fields.size() - 1)[0]][fields.get(fields.size() - 1)[1]].is_snake = false;
             fields.remove(fields.size() - 1);
 

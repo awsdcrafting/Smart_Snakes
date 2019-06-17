@@ -15,7 +15,7 @@ public class Processing extends PApplet {
 
         //--------Main Window-------------
         //How many games there should be
-        public int population_size = 2000;
+        public int population_size = 24;
 
         //How big the window should be
         public int main_window_size_x = 1000;
