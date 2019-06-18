@@ -74,7 +74,7 @@ public class Snake {
                             looking_towards = 0;
                             break;
                         case 1: //Right
-                            new_front_field_coordinates_modifier[1] = -1;
+                            new_front_field_coordinates_modifier[0] = +1;
                             looking_towards = 1;
                             break;
                         case 2: //Down
