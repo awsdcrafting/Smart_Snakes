@@ -1,24 +1,21 @@
-package com.buckfae;
-
-import java.util.ArrayList;
-import java.util.Random;
+package com.buckfae.game;
 
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 
 public class Game {
 
-    Snake snake;
+    public Snake snake;
 
     //The Coordinates of where the game in the grid is
-    int game_x;
-    int game_y;
+    public int game_x;
+    public int game_y;
 
     //If the game is currently shown
     boolean is_currently_shown;
 
     //Stores all the fields of the game
-    Field fields[][];
+    public Field fields[][];
 
 
     public Game(int game_x, int game_y, boolean is_currently_shown){

@@ -1,5 +1,6 @@
-package com.buckfae;
+package com.buckfae.game;
 
+import com.buckfae.ai.AI_Handler;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public class Processing extends PApplet {
         //Total ammount of games to draw
         private int total_amount_of_games_to_be_drawn;
 
+        //Handles the AI
+        AI_Handler ai_handler;
+
     //-----------------------------------------------------------
 
     //Is called by main to initialize Processing
@@ -69,6 +73,10 @@ public class Processing extends PApplet {
 
         //Calculates the dimensions of the game
         setup_calculate_game_dimensions();
+
+        //Gives all snakes their Brains
+        ai_handler  = new AI_Handler();
+
     }
 
     public void settings(){
@@ -88,6 +96,9 @@ public class Processing extends PApplet {
         draw_games();
 
         //test_game_switching();
+
+        //Checks if all snakes are dead and creates a new Population if necessary
+        ai_handler.update_population();
 
     }
 

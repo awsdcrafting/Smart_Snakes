@@ -1,11 +1,12 @@
-package com.buckfae;
+package com.buckfae.game;
 
-import java.awt.*;
+import com.buckfae.ai.Brain;
+import com.buckfae.game.Field;
+import com.buckfae.game.Game;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static java.awt.Color.RED;
 
 public class Snake {
 
@@ -20,6 +21,9 @@ public class Snake {
 
     //All the fields of the snake
     ArrayList<Integer[]> fields;
+
+    //The brain of the snake
+    public Brain brain;
 
     boolean make_a_move = false;
 
@@ -57,8 +61,8 @@ public class Snake {
             //New coordinates of the new frontfield
             int[] new_front_field_coordinates_modifier = {0, 0};
 
-            //Later the brain gives us the direction
-            int direction_to_move = 2;
+            //Gets the next direction from it's Brain
+            int direction_to_move = brain.calculate_next_move(input_values);
 
             //Depending on where we have to go next and where we are looking at we determine the coordinates of the new frontfield
             switch(direction_to_move){
@@ -136,6 +140,12 @@ public class Snake {
 
             //Resets frame_counter
             make_a_move = false;
+
+
+            //WE are done moving, getting input values to show if shit works
+            if(game.game_x == Processing.games.get(0).game_x && game.game_y == Processing.games.get(0).game_y) {
+                print_input_values(get_input_values());
+            }
         }
 
 
@@ -314,7 +324,7 @@ public class Snake {
 
                 //We now know where we will look at and check what's there
                 //We are out of bounds
-                if (looking_modifier[0] < 0 || looking_modifier[1] < 0 || looking_modifier[0] >= game.fields.length - 1 || looking_modifier[1] >= game.fields.length - 1) {
+                if (looking_modifier[0] < 0 || looking_modifier[1] < 0 || looking_modifier[0] > game.fields.length - 1 || looking_modifier[1] > game.fields[0].length - 1) {
                     //Sets the distance to the wall
                     input_values[current_direction][0] = Point2D.distance(fields.get(0)[0], fields.get(0)[1], looking_modifier[0], looking_modifier[1]);
 
@@ -354,7 +364,7 @@ public class Snake {
     }
 
     public void print_input_values(double[][] input_values){
-
+        System.out.println("LTW " + looking_towards);
         System.out.println("Input Values: ");
         for(int direction = 0; direction < input_values.length; direction++){
 

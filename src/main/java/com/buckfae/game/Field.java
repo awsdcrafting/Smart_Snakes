@@ -1,4 +1,4 @@
-package com.buckfae;
+package com.buckfae.game;
 
 import java.awt.*;
 
@@ -9,8 +9,8 @@ public class Field {
     int field_x;
     int field_y;
 
-    boolean is_snake = false;
-    boolean is_food = false;
+    public boolean is_snake = false;
+    public boolean is_food = false;
 
     Game game;
 
@@ -18,7 +18,7 @@ public class Field {
     Color color_fill;
 
     //Size of one field
-    static int field_size = 10;
+    public static int field_size = 10;
 
     public Field(int field_x, int field_y, Game game) {
 

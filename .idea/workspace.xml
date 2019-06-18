@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ce2f187-6bfc-449d-b0d3-a372a3f5d6a5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="8ce2f187-6bfc-449d-b0d3-a372a3f5d6a5" name="Default Changelist" comment="The Snakes can now move in any direction">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/ai/AI_Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Always_Move_The_Same_Way.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Testing_Algo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/ai/Brain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/game/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/game/Processing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,62 +30,89 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="255">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+            <state relative-caret-position="-697">
+              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Processing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-393">
-              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1827">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Field.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/Brain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="87" selection-start-line="7" selection-start-column="87" selection-end-line="7" selection-end-column="87" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Always_Move_The_Same_Way.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="57" column="64" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+            <state relative-caret-position="255">
+              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1101#1102#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Field.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Testing_Algo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+            <state relative-caret-position="153">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="17" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#133#134#0" expanded="true" />
+                <element signature="e#157#158#0" expanded="true" />
+                <element signature="e#215#216#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Game.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/AI_Handler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+            <state relative-caret-position="353">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,6 +125,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -104,11 +139,18 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Concept" />
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Field.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Game.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/Field.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/game/Field.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/ai/Brain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Testing_Algo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/ai/AI_Handler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/game/Processing.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Always_Move_The_Same_Way.java" />
       </list>
     </option>
   </component>
@@ -131,10 +173,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="273" />
-    <option name="y" value="-7" />
+    <option name="x" value="272" />
+    <option name="y" value="-8" />
     <option name="width" value="1326" />
-    <option name="height" value="1039" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -142,8 +184,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -194,6 +236,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.buckfae.game" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -265,7 +312,9 @@
       <workItem from="1560677363911" duration="958000" />
       <workItem from="1560695572346" duration="3876000" />
       <workItem from="1560700420085" duration="1844000" />
-      <workItem from="1560757201983" duration="2487000" />
+      <workItem from="1560757201983" duration="2633000" />
+      <workItem from="1560765621454" duration="586000" />
+      <workItem from="1560869897598" duration="8079000" />
     </task>
     <task id="LOCAL-00001" summary="Added Processing to readme">
       <created>1560701243708</created>
@@ -281,26 +330,33 @@
       <option name="project" value="LOCAL" />
       <updated>1560701468931</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="The Snakes can now move in any direction">
+      <created>1560759754098</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560759754098</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29274000" />
+    <option name="totallyTimeSpent" value="38085000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4817073" visible="true" weight="0.20683949" />
-      <window_info id="Structure" order="1" sideWeight="0.51829267" side_tool="true" visible="true" weight="0.20683949" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48046875" visible="true" weight="0.21235521" />
+      <window_info id="Structure" order="1" sideWeight="0.51953125" side_tool="true" visible="true" weight="0.21235521" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31879544" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46832815" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41225338" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -310,7 +366,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3271028" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32606438" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -330,94 +386,56 @@
       <path value="$PROJECT_DIR$/GitTesting" />
     </ignored-roots>
     <MESSAGE value="Added Processing to readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Processing to readme" />
+    <MESSAGE value="The Snakes can now move in any direction" />
+    <option name="LAST_COMMIT_MESSAGE" value="The Snakes can now move in any direction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java</url>
-          <line>130</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java</url>
+          <line>90</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="game.fields[1]" />
+        <watch expression="input_values" />
+        <watch expression="input_values[5]" />
+        <watch expression="games" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Concept" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/Smart Snakes.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="uml://JAVA/com.buckfae">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
           <ID>JAVA</ID>
           <OriginalElement>com.buckfae</OriginalElement>
           <nodes>
-            <node x="0.0" y="121.0">com.buckfae.Processing</node>
-            <node x="78.5" y="0.0">com.buckfae.Game</node>
-            <node x="58.5" y="617.0">com.buckfae.Main</node>
+            <node x="" y="">com.buckfae.Snake</node>
+            <node x="" y="">com.buckfae.Field</node>
+            <node x="" y="">com.buckfae.Processing</node>
+            <node x="" y="">com.buckfae.Game</node>
+            <node x="" y="">com.buckfae.Main</node>
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.6997084548104957" x="131.0" y="333.0" />
-          <SelectedNodes>
-            <node>com.buckfae.Game</node>
-          </SelectedNodes>
+          <settings layout="Hierarchic Group" zoom="1.0" x="275.0" y="347.0" />
+          <SelectedNodes />
           <Categories>
             <Category>Fields</Category>
-            <Category>Methods</Category>
-            <Category>Properties</Category>
-            <Category>Inner Classes</Category>
           </Categories>
           <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Concept" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="51">
-            <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Smart Snakes.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="38" column="59" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/processing/core/3.3.6/core-3.3.6.jar!/processing/core/PApplet.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
@@ -428,22 +446,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Processing.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-393">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/Brain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="87" selection-start-line="7" selection-start-column="87" selection-end-line="7" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/AI_Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/Snake.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="57" column="64" selection-start-line="57" selection-start-column="64" selection-end-line="57" selection-end-column="64" />
+        <state relative-caret-position="170">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Testing_Algo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#133#134#0" expanded="true" />
+            <element signature="e#157#158#0" expanded="true" />
+            <element signature="e#215#216#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/processing/core/3.3.6/core-3.3.6.jar!/processing/core/PApplet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="1448" column="33" selection-start-line="1448" selection-start-column="33" selection-end-line="1448" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Processing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1827">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/ai/Algo_Always_Move_The_Same_Way.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding>
+            <element signature="e#1101#1102#0" expanded="true" />
           </folding>
         </state>
       </provider>
