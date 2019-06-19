@@ -2,6 +2,9 @@
 Snake Game build in a way that you can test your own algorithms on it.
 <br> I am a student and i am working on this project in my free time. 
 
+## Building the project
+If you want to create a runnable jar execute the maven goal package
+
 ## How does it all work
 1. Main initializes Processing
 2. Processing contains a draw() function that is called every frame
