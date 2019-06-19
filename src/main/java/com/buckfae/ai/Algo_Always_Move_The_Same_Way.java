@@ -1,5 +1,7 @@
 package com.buckfae.ai;
 
+import com.buckfae.game.Game;
+import com.buckfae.game.Processing;
 import com.buckfae.game.Snake;
 
 public class Algo_Always_Move_The_Same_Way implements Brain {
@@ -31,8 +33,17 @@ public class Algo_Always_Move_The_Same_Way implements Brain {
         return 0;
     }
 
-    public int generate_brains_for_new_generation() {
-        return 0;
+    public void generate_brains_for_new_generation() {
+
+        //We do this for each game
+        for(Game game: Processing.games){
+
+            //Generates a new Brain
+            Brain new_brain = new Algo_Always_Move_The_Same_Way();
+
+            //Adds the new brain to the snake
+            game.snake.brain = new_brain;
+        }
     }
 
 }

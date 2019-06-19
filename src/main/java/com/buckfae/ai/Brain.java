@@ -6,5 +6,5 @@ public interface Brain {
     int calculate_next_move(double[][] input_values);
 
     //Is called when all snakes are dead and will add new (better) brains to all snakes
-    int generate_brains_for_new_generation();
+    void generate_brains_for_new_generation();
 }

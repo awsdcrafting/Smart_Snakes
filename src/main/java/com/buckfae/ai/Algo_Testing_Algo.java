@@ -6,7 +6,6 @@ public class Algo_Testing_Algo implements Brain {
         return 0;
     }
 
-    public int generate_brains_for_new_generation() {
-        return 0;
+    public void generate_brains_for_new_generation() {
     }
 }

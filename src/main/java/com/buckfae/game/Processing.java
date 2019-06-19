@@ -180,39 +180,52 @@ public class Processing extends PApplet {
         //Initializes the games
         games = new ArrayList<Game>();
 
+        //tracks how many games we created yet
+        int amount_of_games_created = 0;
+
         //Creates all games and sets their coordinates
+        loop_game_x:
         for(int games_x = 0; games_x < amount_of_games_x; games_x++){
 
             for(int games_y = 0; games_y < amount_of_games_y; games_y++){
 
-                //Calculates the coordinates for the new game
-                int new_game_x = spaces_to_side[0] + space_left_x / 2
-                        + (games_x * (size_of_one_game + space_between_games_x));
-                int new_game_y = spaces_to_side[2] + space_left_y / 2
-                        + (games_y * (size_of_one_game + space_between_games_y));
+                //We still need to draw more games
+                if(amount_of_games_created++ < population_size) {
 
-                //We still have room to display a game
-                if(games_x != amount_of_games_x - 1 || games_y != amount_of_games_y - 1) {
-                    games.add( new Game(new_game_x, new_game_y, true));
-                }
+                    //Calculates the coordinates for the new game
+                    int new_game_x = spaces_to_side[0] + space_left_x / 2
+                            + (games_x * (size_of_one_game + space_between_games_x));
+                    int new_game_y = spaces_to_side[2] + space_left_y / 2
+                            + (games_y * (size_of_one_game + space_between_games_y));
 
-                //We can't display more games
-                else {
-
-                    //Creates the last visible game
-                    games.add( new Game(new_game_x, new_game_y, true));
-
-                    //Tells the user about the remaining games
-                    System.out.println("We created all visible games, creating invisible ones now");
-                    System.out.println("Games visible: " + games.size());
-
-                    //creates the rest of the games
-                    for(int i = games.size(); i < population_size; i++){
-                        games.add( new Game(new_game_x, new_game_y, false));
+                    //We still have room to display a game
+                    if (games_x != amount_of_games_x - 1 || games_y != amount_of_games_y - 1) {
+                        games.add(new Game(new_game_x, new_game_y, true));
                     }
 
-                    //Logs total amount of games
-                    System.out.println("Games total: " + games.size());
+                    //We can't display more games
+                    else {
+
+                        //Creates the last visible game
+                        games.add(new Game(new_game_x, new_game_y, true));
+
+                        //Tells the user about the remaining games
+                        System.out.println("We created all visible games, creating invisible ones now");
+                        System.out.println("Games visible: " + games.size());
+
+                        //creates the rest of the games
+                        for (int i = games.size(); i < population_size; i++) {
+                            games.add(new Game(new_game_x, new_game_y, false));
+                        }
+
+                        //Logs total amount of games
+                        System.out.println("Games total: " + games.size());
+                    }
+                }
+                //We drew enough games
+                else {
+                    //We stop creating games
+                    break loop_game_x;
                 }
             }
         }
