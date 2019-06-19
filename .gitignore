@@ -23,7 +23,6 @@
 hs_err_pid*
 
 # Removal of unneccesary files
-.idea
-.target
+*/.idea
+*/.target
 dependency-reduced-pom.xml
-*.iml
