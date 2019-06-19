@@ -3,7 +3,7 @@ Snake Game build in a way that you can test your own algorithms on it.
 <br> I am a student and i am working on this project in my free time. 
 <br> The project is still work in progress and far from beeing done, so most things are not working yet
 ## Building the project
-If you want to create a runnable jar execute the maven goal package
+If you want to create a runnable jar execute the maven goal clean package
 
 ## How does it all work
 1. Main initializes Processing
