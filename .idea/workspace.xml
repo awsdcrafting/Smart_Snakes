@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ce2f187-6bfc-449d-b0d3-a372a3f5d6a5" name="Default Changelist" comment="The Snakes can now move in any direction">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java" afterDir="false" />
-    </list>
+    <list default="true" id="8ce2f187-6bfc-449d-b0d3-a372a3f5d6a5" name="Default Changelist" comment="The Snakes can now move in any direction" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
+            <state relative-caret-position="221">
+              <caret line="76" column="71" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -304,7 +302,7 @@
       <workItem from="1560700420085" duration="1844000" />
       <workItem from="1560757201983" duration="2633000" />
       <workItem from="1560765621454" duration="586000" />
-      <workItem from="1560869897598" duration="10402000" />
+      <workItem from="1560869897598" duration="10757000" />
     </task>
     <task id="LOCAL-00001" summary="Added Processing to readme">
       <created>1560701243708</created>
@@ -331,14 +329,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40408000" />
+    <option name="totallyTimeSpent" value="40763000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48096448" visible="true" weight="0.21235521" />
-      <window_info id="Structure" order="1" sideWeight="0.5190355" side_tool="true" visible="true" weight="0.21235521" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4807892" visible="true" weight="0.21235521" />
+      <window_info id="Structure" order="1" sideWeight="0.5192108" side_tool="true" visible="true" weight="0.21235521" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -346,7 +344,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18172377" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18172377" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41225338" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -503,8 +501,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/buckfae/game/Snake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
+        <state relative-caret-position="221">
+          <caret line="76" column="71" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
         </state>
       </provider>
     </entry>
