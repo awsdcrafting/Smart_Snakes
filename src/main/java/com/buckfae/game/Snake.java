@@ -10,6 +10,12 @@ import java.util.Random;
 
 public class Snake {
 
+    public int score = 300; //Initial score of the snake
+
+    //Kills the Snake after this many steps (Snake should not go on for ever)
+    public int die_after_steps; //Set in Constructor as rn we don't have acess to that variable
+    public int steps_done = 0;
+
     //0 up, 1 right, 2 down, 3 left
     int looking_towards = 2;
 
@@ -20,15 +26,36 @@ public class Snake {
     Game game;
 
     //All the fields of the snake
-    ArrayList<Integer[]> fields;
+    public ArrayList<Integer[]> fields;
 
     //The brain of the snake
     public Brain brain;
 
+    //If this is true the snake will move
     boolean make_a_move = false;
+
+    //Tracks if the snake has died
+    public boolean is_dead = false;
+
+    //Tracks what the Snake died to, 0 -> Alive 1 -> Wall 2 -> Self 3 -> Steps
+    public int died_to = 0;
+
+    //x and y position of the food
+    public int[] food = new int[2];
+
+    //Iterations the game waits till it replaces a dead snake with a new one
+    public int iterations_till_replace = 50;
+
+    //Keeps track of the last fields we visited in order to check if we are just running in circles
+    ArrayList<Integer[]> last_fields = new ArrayList<Integer[]>();
+    //Tracks the last distance to food, score increases if we got closer and decreses otherwise
+    double last_distance_to_food = Double.MAX_VALUE;
 
 
     public Snake(Game game) {
+
+        //Sets the value to the maximum amount of moves
+        die_after_steps = game.fields.length * game.fields.length;
 
         this.game = game;
 
@@ -45,6 +72,72 @@ public class Snake {
             fields.add(0, new Integer[]{random_x_pos, random_y_pos + i});
             game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
         }
+
+        //Adds all fields to the last fields
+        last_fields.addAll(fields);
+
+        //Spawns the food
+        generate_new_food();
+    }
+
+    //Evaluates if the move was good or bad
+    public void evauluate_move(){
+
+        /*
+            We evaulate the following things:
+                1. Did we just die?
+                2. Are we closer to the food than we were 3 moves ago
+                3. Are we on a tile we were on the last lenght() + 2 moves? -> Prevents from doing circles
+        */
+        //Tracks what the Snake died to, 0 -> Alive 1 -> Wall 2 -> Self 3 -> Steps
+        switch (died_to){
+            case 1: //Died to wall
+                score -= 100;
+                break;
+            case 2: //Died to itself
+                score -= 70;
+                break;
+            case 3: //Out of steps
+                score -= 130;
+                break;
+                default: //Nothing happens
+                    break;
+        }
+
+        //Checks if we did run in a circle
+        boolean did_a_circle = false;
+        for(Integer[] i : last_fields){
+            //We have been on this tile before
+            if (fields.get(0)[0].equals(i[0]) && fields.get(0)[1].equals(i[1])){
+                did_a_circle = true;
+            }
+        }
+
+        double new_distance_to_food = Point2D.distance(fields.get(0)[0], fields.get(0)[1],food[0],food[1]);
+        if(new_distance_to_food > last_distance_to_food){
+            score += 30;
+        } else {
+            score -= 45;
+        }
+
+        last_distance_to_food = new_distance_to_food;
+
+        //Punishment if we went in a circle
+        if(did_a_circle){
+            score -= 40;
+        } else {
+            score += 5;
+        }
+
+        //We now add the new front field to the arraylist
+        last_fields.add(0, fields.get(0));
+
+        //If we are on food
+        if(fields.get(0)[0].equals(food[0]) && fields.get(0)[1].equals(food[1])){
+            score += 500 * fields.size(); //More reward the longer the snake is
+            last_fields.clear();
+        }
+
     }
 
     public void update_snake() {
@@ -53,7 +146,7 @@ public class Snake {
 
 
         //We are allolwed to move (controlled by Processing)
-        if (make_a_move) {
+        if (make_a_move && !is_dead) {
 
             //We will pass these later to our brain to get the direction to move
             double input_values[][] = get_input_values();
@@ -65,10 +158,10 @@ public class Snake {
             int direction_to_move = brain.calculate_next_move(input_values);
 
             //Depending on where we have to go next and where we are looking at we determine the coordinates of the new frontfield
-            switch(direction_to_move){
+            switch (direction_to_move) {
                 //Looking towards: 0 up, 1 right, 2 down, 3 left
                 case 0: //Ahead
-                    switch (looking_towards){
+                    switch (looking_towards) {
                         case 0: //Up
                             new_front_field_coordinates_modifier[1] = -1;
                             looking_towards = 0;
@@ -88,7 +181,7 @@ public class Snake {
                     }
                     break;
                 case 1: //Left
-                    switch (looking_towards){
+                    switch (looking_towards) {
                         case 0: //Up
                             new_front_field_coordinates_modifier[0] = -1;
                             looking_towards = 3;
@@ -108,7 +201,7 @@ public class Snake {
                     }
                     break;
                 case 2: //Right
-                    switch (looking_towards){
+                    switch (looking_towards) {
                         case 0: //Up
                             new_front_field_coordinates_modifier[0] = +1;
                             looking_towards = 1;
@@ -130,24 +223,98 @@ public class Snake {
 
             }
 
-            //Adds the new field, color will be set later
-            fields.add(0, new Integer[]{fields.get(0)[0] + new_front_field_coordinates_modifier[0], fields.get(0)[1] + new_front_field_coordinates_modifier[1]});
-            game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
+            //Checks if this field is out of bounds -> Snake hit a wall
+            if (fields.get(0)[0] + new_front_field_coordinates_modifier[0] < 0
+                    || fields.get(0)[0] + new_front_field_coordinates_modifier[0] > game.fields.length - 1
+                    || fields.get(0)[1] + new_front_field_coordinates_modifier[1] < 0
+                    || fields.get(0)[1] + new_front_field_coordinates_modifier[1] > game.fields.length - 1) {
 
-            //Sets last field back to white, then removes it
-            game.fields[fields.get(fields.size() - 1)[0]][fields.get(fields.size() - 1)[1]].is_snake = false;
-            fields.remove(fields.size() - 1);
+                //We did hit a wall
+                is_dead = true;
+                died_to = 1;
+            }
+            //We didn't crash into a wall
 
-            //Resets frame_counter
-            make_a_move = false;
+
+            //Loops through all fields and checks if two have the same coordinates now
+            for(int i = 1; i < fields.size(); i++){
+                if(fields.get(0)[0].equals(fields.get(i)[0]) && fields.get(0)[1].equals(fields.get(i)[1])){
+
+                    //Snake is now dead, we track that we died to a bodypiece
+                    is_dead = true;
+                    died_to = 2;
+                    break;
+                }
+            }
+
+            if(steps_done++ >= die_after_steps){
+                is_dead = true;
+                died_to = 3;
+            }
+
+            //We are not dead and we can move!
+            if(!is_dead) {
 
 
-            //WE are done moving, getting input values to show if shit works
-            if(game.game_x == Processing.games.get(0).game_x && game.game_y == Processing.games.get(0).game_y) {
-                print_input_values(get_input_values());
+                //Adds the new field, color will be set later
+                fields.add(0, new Integer[]{fields.get(0)[0] + new_front_field_coordinates_modifier[0], fields.get(0)[1] + new_front_field_coordinates_modifier[1]});
+                game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
+
+                //Adjusts the score based on if the move was good or bad
+                evauluate_move();
+
+                //Checks if we are on food
+                boolean is_on_food = false;
+                for(Integer[] i: fields){
+                    if(i[0] == food[0] && i[1] == food[1]){
+                        is_on_food = true;
+                        //generates new food for the next time
+                        generate_new_food();
+                        break;
+                    }
+                }
+
+                //If we are not on food (if we are our length increases and we don't need to remove one
+                if(!is_on_food) {
+                    //Sets last field back to white, then removes it
+                    game.fields[fields.get(fields.size() - 1)[0]][fields.get(fields.size() - 1)[1]].is_snake = false;
+                    fields.remove(fields.size() - 1);
+                }
+
+                //Resets frame_counter
+                make_a_move = false;
+            }
+            //We just died
+            else {
+
+                //Makes everything white in this game
+                for(Field[] game_fields: game.fields){
+                    for(Field field: game_fields){
+                        field.is_snake = false;
+                        field.is_food = false;
+                    }
+                }
+
             }
         }
+        //We are already dead
+        else if(make_a_move) {
+            if(--iterations_till_replace == 0) {
 
+
+                //We replace this snake with one alive (if this one is visible)
+                if (game.is_currently_shown) {
+
+                    //Looping through all games, searching for one that is alive and not shown
+                    for (Game game : Processing.games) {
+                        if (!game.is_currently_shown && !game.snake.is_dead) {
+                            Game.switch_two_games_position(game, this.game);
+                        }
+                    }
+                }
+            }
+            make_a_move = false;
+        }
 
     }
 
@@ -180,7 +347,7 @@ public class Snake {
             }
         }
 
-        int value_to_add_if_not_found = game.fields.length;
+        int value_to_add_if_not_found = 0;
 
         for (int current_direction = 0; current_direction < 7; current_direction++) {
 
@@ -361,6 +528,38 @@ public class Snake {
         }
 
         return input_values;
+    }
+
+    public void generate_new_food(){
+
+        Random random = new Random();
+
+        //Removes the old food from the fields
+        game.fields[fields.get(0)[0]][fields.get(0)[1]].is_food = false;
+
+        //Until we spawned food successfull
+        while_spawn_food:
+        while(true){
+            int food_x = random.nextInt(game.fields.length);
+            int food_y = random.nextInt(game.fields.length);
+
+            //Checks if the snake currently is on this position
+            for(Integer[] i: fields){
+                //The coordinates are the same, we start again
+                if(i[0] == food_x && i[1] == food_y){
+                    continue while_spawn_food;
+                }
+            }
+            //The snake is not on these coordinates -> We have a new food
+            game.fields[food_x][food_y].is_food = true;
+            food[0] = food_x;
+            food[1] = food_y;
+
+            //Resets steps done
+            steps_done = 0;
+
+            break;
+        }
     }
 
     public void print_input_values(double[][] input_values){

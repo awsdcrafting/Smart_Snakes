@@ -8,10 +8,11 @@ public class AI_Handler {
 
     //----------------Variables to play around with-----------------------------
 
-        int id_of_brain_to_choose = 1;
+        int id_of_brain_to_choose = 2;
         /*
             0 -> Algo_Testing_Algo
             1 -> Algo_Always_Move_The_Same_Way
+            2 -> Algo_NN_Using_Neuroph
 
             If you want to add a new Algo yourself make sure to add your Algo in the
                 switch statement below. This may seem complicated but it allows to
@@ -24,6 +25,8 @@ public class AI_Handler {
     //All brains will later be instantiated using this one so we don't have to determine which kind of brain we want every time we add a brain to sth
     Brain master_brain;
 
+    public boolean update_this_frame = false;
+
     public AI_Handler(){
 
         //Decides what the master_brain will be
@@ -34,6 +37,9 @@ public class AI_Handler {
                 break;
             case 1:
                 master_brain = new Algo_Always_Move_The_Same_Way();
+                break;
+            case 2:
+                master_brain = new Algo_NN_Using_Neuroph();
                 break;
         }
 
@@ -53,6 +59,30 @@ public class AI_Handler {
 
 
     public void update_population(){
+
+        //Update this frame will always be true if the snakes moved this frame
+        if(update_this_frame) {
+
+            //Checks if all Snakes are dead
+            boolean all_dead = true;
+            //Goes through all snakes and checks if at least one is alive
+            for (Game game : Processing.games) {
+                if (!game.snake.is_dead) {
+                    all_dead = false;
+                    break;
+                }
+            }
+
+            //All snakes are dead
+            if (all_dead) {
+
+                //Generates the brains for a new generation and resets the snakes as well
+                Processing.games.get(0).snake.brain.generate_brains_for_new_generation();
+            }
+
+            //We don't update next frame
+            update_this_frame = false;
+        }
 
     }
 }

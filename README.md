@@ -57,6 +57,9 @@ If you want to create a runnable jar execute the maven goal clean package
                     //We do this for each game
                     for(Game game: Processing.games){
                     
+                        //Resets the Snake
+                        game.snake = new Snake(game);
+                                    
                         //Generates a new Brain
                         Brain new_brain = new Algo_<Name_Of_Your_Algo>();
                     
@@ -65,8 +68,6 @@ If you want to create a runnable jar execute the maven goal clean package
                     }
                 }
             ```
-            We do not have to reset the snakes position and reset all 
-            it's variables as the AI_Handler does that for us once all snakes are dead.
 4. Add a case to the switch in the constructor of the AI_Handler 
 ## Customizing the UI
 In the Class Processing you can see a big section saying Variables to play around with

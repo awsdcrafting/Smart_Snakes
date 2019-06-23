@@ -1,5 +1,7 @@
 package com.buckfae.game;
 
+import java.util.Collections;
+
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 
@@ -71,6 +73,9 @@ public class Game {
         game2.game_x = temp_x;
         game2.game_y = temp_y;
         game2.is_currently_shown = temp_is_currently_shown;
+
+        //Swaps the two objects that if we do games.get(0) we still get the element in the upper left corner
+        Collections.swap(Processing.games, Processing.games.indexOf(game1), Processing.games.indexOf(game2));
 
     }
 

@@ -12,6 +12,7 @@ public class Field {
     public boolean is_snake = false;
     public boolean is_food = false;
 
+
     Game game;
 
     //Color of the field

@@ -16,7 +16,7 @@ public class Processing extends PApplet {
 
         //--------Main Window-------------
         //How many games there should be
-        public int population_size = 24;
+        public int population_size = 1500;
 
         //How big the window should be
         public int main_window_size_x = 1000;
@@ -34,6 +34,9 @@ public class Processing extends PApplet {
         //Default size of text
         public int default_text_size = 20;
 
+        //Each n Frames the snakes will move (Game runs default at 60 fps)
+        public int frames_to_wait_between_two_moves = 0;
+
     //-----------------------------------------------------------
 
     //-------------Variables not to play around with--------------
@@ -49,6 +52,9 @@ public class Processing extends PApplet {
 
         //Handles the AI
         AI_Handler ai_handler;
+
+        //Frames we are waiting already, once >= frames to wait we make a move
+        int frames_currently_waiting = 0;
 
     //-----------------------------------------------------------
 
@@ -97,6 +103,11 @@ public class Processing extends PApplet {
 
         //test_game_switching();
 
+        //If we waited long enough to move, we move
+        if(frames_currently_waiting++ >= frames_to_wait_between_two_moves){
+            move_this_frame();
+        }
+
         //Checks if all snakes are dead and creates a new Population if necessary
         ai_handler.update_population();
 
@@ -106,11 +117,17 @@ public class Processing extends PApplet {
 
         //Right now the snakes will only make a move, if the spacebar is pressed
         if(key == ' '){
-            //Allows all snakes to make another move
-            for(Game game: games){
-                game.snake.make_a_move = true;
-            }
+            //allows the snakes to move this frame
+            move_this_frame();
         }
+    }
+
+    public void move_this_frame(){
+        //Allows all snakes to make another move and makes the ai handler update
+        for(Game game: games){
+            game.snake.make_a_move = true;
+        }
+        ai_handler.update_this_frame = true;
     }
 
     //Draws all games
