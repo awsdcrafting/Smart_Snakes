@@ -2,17 +2,17 @@ package com.buckfae.ai;
 
 import com.buckfae.game.Game;
 import com.buckfae.game.Processing;
-import com.buckfae.game.Snake;
 
 public class AI_Handler {
 
     //----------------Variables to play around with-----------------------------
 
-        int id_of_brain_to_choose = 2;
+        int id_of_brain_to_choose = 3;
         /*
             0 -> Algo_Testing_Algo
             1 -> Algo_Always_Move_The_Same_Way
             2 -> Algo_NN_Using_Neuroph
+            3 -> Algo_Played_By_Human
 
             If you want to add a new Algo yourself make sure to add your Algo in the
                 switch statement below. This may seem complicated but it allows to
@@ -40,6 +40,9 @@ public class AI_Handler {
                 break;
             case 2:
                 master_brain = new Algo_NN_Using_Neuroph();
+                break;
+            case 3:
+                master_brain = new Algo_Played_By_Human();
                 break;
         }
 

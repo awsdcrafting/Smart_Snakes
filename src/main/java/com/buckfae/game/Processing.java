@@ -16,7 +16,7 @@ public class Processing extends PApplet {
 
         //--------Main Window-------------
         //How many games there should be
-        public int population_size = 1500;
+        public int population_size = 1;
 
         //How big the window should be
         public int main_window_size_x = 1000;
@@ -55,6 +55,9 @@ public class Processing extends PApplet {
 
         //Frames we are waiting already, once >= frames to wait we make a move
         int frames_currently_waiting = 0;
+
+        //0 -> Ahead, 1 -> Left, 2 -> Right, allows the human to control the snake
+        public static int direction_choosen_by_hoooman = 0;
 
     //-----------------------------------------------------------
 
@@ -105,7 +108,7 @@ public class Processing extends PApplet {
 
         //If we waited long enough to move, we move
         if(frames_currently_waiting++ >= frames_to_wait_between_two_moves){
-            move_this_frame();
+            //move_this_frame();
         }
 
         //Checks if all snakes are dead and creates a new Population if necessary
@@ -118,6 +121,20 @@ public class Processing extends PApplet {
         //Right now the snakes will only make a move, if the spacebar is pressed
         if(key == ' '){
             //allows the snakes to move this frame
+            move_this_frame();
+        }
+
+        //These are just used if a hoooman controls the game, to do that change the variable in the AI_Handler class
+        if(keyCode == UP){
+            direction_choosen_by_hoooman = 0;
+            move_this_frame();
+        }
+        if(keyCode == LEFT){
+            direction_choosen_by_hoooman = 1;
+            move_this_frame();
+        }
+        if(keyCode == RIGHT){
+            direction_choosen_by_hoooman = 2;
             move_this_frame();
         }
     }
