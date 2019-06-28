@@ -1,8 +1,6 @@
 package com.buckfae.game;
 
 import com.buckfae.ai.Brain;
-import com.buckfae.game.Field;
-import com.buckfae.game.Game;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -44,7 +42,7 @@ public class Snake {
     public int[] food = new int[2];
 
     //Iterations the game waits till it replaces a dead snake with a new one
-    public int iterations_till_replace = 50;
+    public int frames_till_replace = 50;
 
     //Keeps track of the last fields we visited in order to check if we are just running in circles
     ArrayList<Integer[]> last_fields = new ArrayList<Integer[]>();
@@ -65,6 +63,16 @@ public class Snake {
         Random random = new Random();
         int random_x_pos = random.nextInt(game.fields.length - 5) + 2;
         int random_y_pos = random.nextInt(game.fields.length - 5) + 2;
+
+
+
+        //Ensures that we have a clear game at the beginning
+        for(Field[] fields: game.fields){
+            for(Field field: fields){
+                field.is_snake = false;
+                field.is_food = false;
+            }
+        }
 
         //Sets the coordinates of the field
         for (int i = 0; i < initial_length; i++) {
@@ -98,7 +106,7 @@ public class Snake {
                 score -= 70;
                 break;
             case 3: //Out of steps
-                score -= 130;
+                score -= 80;
                 break;
                 default: //Nothing happens
                     break;
@@ -113,18 +121,19 @@ public class Snake {
             }
         }
 
+        //If we've gotten closer to the food we get a reward
         double new_distance_to_food = Point2D.distance(fields.get(0)[0], fields.get(0)[1],food[0],food[1]);
         if(new_distance_to_food > last_distance_to_food){
-            score += 30;
+            score += 5;
         } else {
-            score -= 45;
+            score -= 10;
         }
 
         last_distance_to_food = new_distance_to_food;
 
         //Punishment if we went in a circle
         if(did_a_circle){
-            score -= 40;
+            score -= 10;
         } else {
             score += 5;
         }
@@ -134,7 +143,7 @@ public class Snake {
 
         //If we are on food
         if(fields.get(0)[0].equals(food[0]) && fields.get(0)[1].equals(food[1])){
-            score += 500 * fields.size(); //More reward the longer the snake is
+            score += 100 * fields.size(); //More reward the longer the snake is
             last_fields.clear();
         }
 
@@ -142,173 +151,167 @@ public class Snake {
 
     public void update_snake() {
 
-        //Right now all the snake does is move forward each frame
-
-
         //We are allolwed to move (controlled by Processing)
-        if (make_a_move && !is_dead) {
+        if (make_a_move) {
 
-            //We will pass these later to our brain to get the direction to move
-            double input_values[][] = get_input_values();
+            if (!is_dead) {
 
-            //New coordinates of the new frontfield
-            int[] new_front_field_coordinates_modifier = {0, 0};
+                //We will pass these later to our brain to get the direction to move
+                double input_values[][] = get_input_values();
 
-            //Gets the next direction from it's Brain
-            int direction_to_move = brain.calculate_next_move(input_values);
+                //New coordinates of the new frontfield
+                int[] new_front_field_coordinates_modifier = {0, 0};
 
-            //Depending on where we have to go next and where we are looking at we determine the coordinates of the new frontfield
-            switch (direction_to_move) {
-                //Looking towards: 0 up, 1 right, 2 down, 3 left
-                case 0: //Ahead
-                    switch (looking_towards) {
-                        case 0: //Up
-                            new_front_field_coordinates_modifier[1] = -1;
-                            looking_towards = 0;
-                            break;
-                        case 1: //Right
-                            new_front_field_coordinates_modifier[0] = +1;
-                            looking_towards = 1;
-                            break;
-                        case 2: //Down
-                            new_front_field_coordinates_modifier[1] = +1;
-                            looking_towards = 2;
-                            break;
-                        case 3: //Left
-                            new_front_field_coordinates_modifier[0] = -1;
-                            looking_towards = 3;
-                            break;
-                    }
-                    break;
-                case 1: //Left
-                    switch (looking_towards) {
-                        case 0: //Up
-                            new_front_field_coordinates_modifier[0] = -1;
-                            looking_towards = 3;
-                            break;
-                        case 1: //Right
-                            new_front_field_coordinates_modifier[1] = -1;
-                            looking_towards = 0;
-                            break;
-                        case 2: //Down
-                            new_front_field_coordinates_modifier[0] = +1;
-                            looking_towards = 1;
-                            break;
-                        case 3: //Left
-                            new_front_field_coordinates_modifier[1] = +1;
-                            looking_towards = 2;
-                            break;
-                    }
-                    break;
-                case 2: //Right
-                    switch (looking_towards) {
-                        case 0: //Up
-                            new_front_field_coordinates_modifier[0] = +1;
-                            looking_towards = 1;
-                            break;
-                        case 1: //Right
-                            new_front_field_coordinates_modifier[1] = +1;
-                            looking_towards = 2;
-                            break;
-                        case 2: //Down
-                            new_front_field_coordinates_modifier[0] = -1;
-                            looking_towards = 3;
-                            break;
-                        case 3: //Left
-                            new_front_field_coordinates_modifier[1] = -1;
-                            looking_towards = 0;
-                            break;
-                    }
-                    break;
+                //Gets the next direction from it's Brain
+                int direction_to_move = brain.calculate_next_move(input_values);
 
-            }
+                //Depending on where we have to go next and where we are looking at we determine the coordinates of the new frontfield
+                switch (direction_to_move) {
+                    //Looking towards: 0 up, 1 right, 2 down, 3 left
+                    case 0: //Ahead
+                        switch (looking_towards) {
+                            case 0: //Up
+                                new_front_field_coordinates_modifier[1] = -1;
+                                looking_towards = 0;
+                                break;
+                            case 1: //Right
+                                new_front_field_coordinates_modifier[0] = +1;
+                                looking_towards = 1;
+                                break;
+                            case 2: //Down
+                                new_front_field_coordinates_modifier[1] = +1;
+                                looking_towards = 2;
+                                break;
+                            case 3: //Left
+                                new_front_field_coordinates_modifier[0] = -1;
+                                looking_towards = 3;
+                                break;
+                        }
+                        break;
+                    case 1: //Left
+                        switch (looking_towards) {
+                            case 0: //Up
+                                new_front_field_coordinates_modifier[0] = -1;
+                                looking_towards = 3;
+                                break;
+                            case 1: //Right
+                                new_front_field_coordinates_modifier[1] = -1;
+                                looking_towards = 0;
+                                break;
+                            case 2: //Down
+                                new_front_field_coordinates_modifier[0] = +1;
+                                looking_towards = 1;
+                                break;
+                            case 3: //Left
+                                new_front_field_coordinates_modifier[1] = +1;
+                                looking_towards = 2;
+                                break;
+                        }
+                        break;
+                    case 2: //Right
+                        switch (looking_towards) {
+                            case 0: //Up
+                                new_front_field_coordinates_modifier[0] = +1;
+                                looking_towards = 1;
+                                break;
+                            case 1: //Right
+                                new_front_field_coordinates_modifier[1] = +1;
+                                looking_towards = 2;
+                                break;
+                            case 2: //Down
+                                new_front_field_coordinates_modifier[0] = -1;
+                                looking_towards = 3;
+                                break;
+                            case 3: //Left
+                                new_front_field_coordinates_modifier[1] = -1;
+                                looking_towards = 0;
+                                break;
+                        }
+                        break;
 
-            //Checks if this field is out of bounds -> Snake hit a wall
-            if (fields.get(0)[0] + new_front_field_coordinates_modifier[0] < 0
-                    || fields.get(0)[0] + new_front_field_coordinates_modifier[0] > game.fields.length - 1
-                    || fields.get(0)[1] + new_front_field_coordinates_modifier[1] < 0
-                    || fields.get(0)[1] + new_front_field_coordinates_modifier[1] > game.fields.length - 1) {
-
-                //We did hit a wall
-                is_dead = true;
-                died_to = 1;
-            }
-            //We didn't crash into a wall
-
-
-            //Loops through all fields and checks if two have the same coordinates now
-            for(int i = 1; i < fields.size(); i++){
-                if(fields.get(0)[0].equals(fields.get(i)[0]) && fields.get(0)[1].equals(fields.get(i)[1])){
-
-                    //Snake is now dead, we track that we died to a bodypiece
-                    is_dead = true;
-                    died_to = 2;
-                    break;
                 }
-            }
 
-            if(steps_done++ >= die_after_steps){
-                is_dead = true;
-                died_to = 3;
-            }
+                //Checks if this field is out of bounds -> Snake hit a wall
+                if (fields.get(0)[0] + new_front_field_coordinates_modifier[0] < 0
+                        || fields.get(0)[0] + new_front_field_coordinates_modifier[0] > game.fields.length - 1
+                        || fields.get(0)[1] + new_front_field_coordinates_modifier[1] < 0
+                        || fields.get(0)[1] + new_front_field_coordinates_modifier[1] > game.fields.length - 1) {
 
-            //We are not dead and we can move!
-            if(!is_dead) {
+                    //We did hit a wall
+                    is_dead = true;
+                    died_to = 1;
+                }
+                //We didn't crash into a wall
 
 
-                //Adds the new field, color will be set later
-                fields.add(0, new Integer[]{fields.get(0)[0] + new_front_field_coordinates_modifier[0], fields.get(0)[1] + new_front_field_coordinates_modifier[1]});
-                game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
+                //Loops through all fields and checks if two have the same coordinates now
+                for (int i = 1; i < fields.size(); i++) {
+                    if (fields.get(0)[0] + new_front_field_coordinates_modifier[0] == fields.get(i)[0]
+                            && fields.get(0)[1] + new_front_field_coordinates_modifier[1] == fields.get(i)[1]) {
 
-                //Adjusts the score based on if the move was good or bad
-                evauluate_move();
-
-                //Checks if we are on food
-                boolean is_on_food = false;
-                for(Integer[] i: fields){
-                    if(i[0] == food[0] && i[1] == food[1]){
-                        is_on_food = true;
-                        //generates new food for the next time
-                        generate_new_food();
+                        //Snake is now dead, we track that we died to a bodypiece
+                        is_dead = true;
+                        died_to = 2;
                         break;
                     }
                 }
 
-                //If we are not on food (if we are our length increases and we don't need to remove one
-                if(!is_on_food) {
-                    //Sets last field back to white, then removes it
-                    game.fields[fields.get(fields.size() - 1)[0]][fields.get(fields.size() - 1)[1]].is_snake = false;
-                    fields.remove(fields.size() - 1);
+                if (steps_done++ >= die_after_steps) {
+                    is_dead = true;
+                    died_to = 3;
                 }
 
-                //Resets frame_counter
-                make_a_move = false;
-            }
-            //We just died
-            else {
+                //Our own move won't kill us
+                if (!is_dead) {
 
-                //Makes everything white in this game
-                for(Field[] game_fields: game.fields){
-                    for(Field field: game_fields){
-                        field.is_snake = false;
-                        field.is_food = false;
+
+                    //Adds the new field, color will be set later
+                    fields.add(0, new Integer[]{fields.get(0)[0] + new_front_field_coordinates_modifier[0], fields.get(0)[1] + new_front_field_coordinates_modifier[1]});
+                    game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
+
+                    //Adjusts the score based on if the move was good or bad
+                    evauluate_move();
+
+                    //Checks if we are on food
+                    boolean is_on_food = false;
+                    for (Integer[] i : fields) {
+                        if (i[0] == food[0] && i[1] == food[1]) {
+                            is_on_food = true;
+                            //generates new food for the next time
+                            generate_new_food();
+                            break;
+                        }
                     }
+
+                    //If we are not on food (if we are our length increases and we don't need to remove one
+                    if (!is_on_food) {
+                        //Sets last field back to white, then removes it
+                        game.fields[fields.get(fields.size() - 1)[0]][fields.get(fields.size() - 1)[1]].is_snake = false;
+                        fields.remove(fields.size() - 1);
+                    }
+
+                    //Resets frame_counter
+                    make_a_move = false;
                 }
 
             }
         }
-        //We are already dead
-        else if(make_a_move) {
-            if(--iterations_till_replace == 0) {
-
+        //We are dead -> Waiting to be replaced
+        if(is_dead){
+            if(--frames_till_replace == 0) {
 
                 //We replace this snake with one alive (if this one is visible)
                 if (game.is_currently_shown) {
 
                     //Looping through all games, searching for one that is alive and not shown
                     for (Game game : Processing.games) {
+
+                        //We found a game that is not shown and the snake is alive
                         if (!game.is_currently_shown && !game.snake.is_dead) {
+
+                            //We swap the games
                             Game.switch_two_games_position(game, this.game);
+                            break;
                         }
                     }
                 }
@@ -347,7 +350,7 @@ public class Snake {
             }
         }
 
-        int value_to_add_if_not_found = 0;
+        int value_to_add_if_not_found = Processing.games.get(0).fields.length;
 
         for (int current_direction = 0; current_direction < 7; current_direction++) {
 

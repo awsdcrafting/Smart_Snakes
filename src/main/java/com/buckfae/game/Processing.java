@@ -1,6 +1,7 @@
 package com.buckfae.game;
 
 import com.buckfae.ai.AI_Handler;
+import com.buckfae.ai.Algo_Generic_AI;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Processing extends PApplet {
 
         //--------Main Window-------------
         //How many games there should be
-        public int population_size = 1;
+        public static int population_size = 1500;
 
         //How big the window should be
         public int main_window_size_x = 1000;
@@ -29,7 +30,7 @@ public class Processing extends PApplet {
         public int space_between_games_y = 60;
 
         //Space between the games and the border of the window
-        public int spaces_to_side[] = {50, 200, 50, 300}; // Left, Right, Up, Down
+        public int spaces_to_side[] = {50, 50, 50, 50}; // Left, Right, Up, Down
 
         //Default size of text
         public int default_text_size = 20;
@@ -108,7 +109,7 @@ public class Processing extends PApplet {
 
         //If we waited long enough to move, we move
         if(frames_currently_waiting++ >= frames_to_wait_between_two_moves){
-            //move_this_frame();
+            move_this_frame();
         }
 
         //Checks if all snakes are dead and creates a new Population if necessary
@@ -136,6 +137,11 @@ public class Processing extends PApplet {
         if(keyCode == RIGHT){
             direction_choosen_by_hoooman = 2;
             move_this_frame();
+        }
+
+        if(key == 'b'){
+            System.out.println("We will generate bigger brains after the next genration");
+            Algo_Generic_AI.generate_bigger_brains = true;
         }
     }
 

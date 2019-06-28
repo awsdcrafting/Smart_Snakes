@@ -3,15 +3,18 @@ package com.buckfae.ai;
 import com.buckfae.game.Game;
 import com.buckfae.game.Processing;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class AI_Handler {
 
     //----------------Variables to play around with-----------------------------
 
-        int id_of_brain_to_choose = 3;
+        int id_of_brain_to_choose = 2;
         /*
             0 -> Algo_Testing_Algo
             1 -> Algo_Always_Move_The_Same_Way
-            2 -> Algo_NN_Using_Neuroph
+            2 -> Algo_Generic_AI
             3 -> Algo_Played_By_Human
 
             If you want to add a new Algo yourself make sure to add your Algo in the
@@ -22,8 +25,6 @@ public class AI_Handler {
         */
     //--------------------------------------------------------------------------
 
-    //All brains will later be instantiated using this one so we don't have to determine which kind of brain we want every time we add a brain to sth
-    Brain master_brain;
 
     public boolean update_this_frame = false;
 
@@ -31,32 +32,26 @@ public class AI_Handler {
 
         //Decides what the master_brain will be
         //If you want to add your own Algo add it's id here as well
-        switch (id_of_brain_to_choose){
-            case 0:
-                master_brain = new Algo_Testing_Algo();
-                break;
-            case 1:
-                master_brain = new Algo_Always_Move_The_Same_Way();
-                break;
-            case 2:
-                master_brain = new Algo_NN_Using_Neuroph();
-                break;
-            case 3:
-                master_brain = new Algo_Played_By_Human();
-                break;
-        }
-
         //Each game gets their brain
         for(Game game: Processing.games){
 
-            //We create a new instance of the class of our master_brain and add it to a snake
-            try {
-                game.snake.brain = master_brain.getClass().newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            switch (id_of_brain_to_choose){
+                case 0:
+                    game.snake.brain = new Algo_Testing_Algo();
+                    break;
+                case 1:
+                    game.snake.brain = new Algo_Always_Move_The_Same_Way();
+                    break;
+                case 2:
+                    //The generic AI expects us to give him an initial amount of neurons per layer
+                    ArrayList<Integer> hidden_layer_neuron_count = new ArrayList<Integer>(Arrays.asList(24));
+                    game.snake.brain = new Algo_Generic_AI(21, hidden_layer_neuron_count, 3);
+                    break;
+                case 3:
+                    game.snake.brain = new Algo_Played_By_Human();
+                    break;
             }
+
         }
     }
 
