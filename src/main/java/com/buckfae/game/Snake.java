@@ -60,10 +60,10 @@ public class Snake {
         this.fields = new ArrayList<Integer[]>();
 
         //Used to give the snake a random start position
+        //Snake starts at a random x and has its head between 2 and the size of the field
         Random random = new Random();
-        int random_x_pos = random.nextInt(game.fields.length - 5) + 2;
-        int random_y_pos = random.nextInt(game.fields.length - 5) + 2;
-
+        int random_x_pos = random.nextInt(game.fields.length);
+        int random_y_pos = random.nextInt(game.fields.length - 4) + 2;
 
 
         //Ensures that we have a clear game at the beginning
@@ -80,7 +80,7 @@ public class Snake {
             fields.add(0, new Integer[]{random_x_pos, random_y_pos + i});
             game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
         }
-
+        
         //Adds all fields to the last fields
         last_fields.addAll(fields);
 
@@ -100,13 +100,13 @@ public class Snake {
         //Tracks what the Snake died to, 0 -> Alive 1 -> Wall 2 -> Self 3 -> Steps
         switch (died_to){
             case 1: //Died to wall
-                score -= 100;
+                //core -= 310;
                 break;
             case 2: //Died to itself
-                score -= 70;
+                //score -= 290;
                 break;
             case 3: //Out of steps
-                score -= 80;
+                //score -= 320;
                 break;
                 default: //Nothing happens
                     break;
@@ -124,18 +124,18 @@ public class Snake {
         //If we've gotten closer to the food we get a reward
         double new_distance_to_food = Point2D.distance(fields.get(0)[0], fields.get(0)[1],food[0],food[1]);
         if(new_distance_to_food > last_distance_to_food){
-            score += 5;
+            //score += 5;
         } else {
-            score -= 10;
+            //score -= 10;
         }
 
         last_distance_to_food = new_distance_to_food;
 
         //Punishment if we went in a circle
         if(did_a_circle){
-            score -= 10;
+            //score -= 10;
         } else {
-            score += 5;
+            //score += 5;
         }
 
         //We now add the new front field to the arraylist
