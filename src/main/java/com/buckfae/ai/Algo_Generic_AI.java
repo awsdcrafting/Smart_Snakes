@@ -43,7 +43,7 @@ public class Algo_Generic_AI implements Brain {
         neural_network = new MultiLayerPerceptron(neurons_count);
 
         //We randomize the weights of the network between 0 and 1
-        neural_network.randomizeWeights(-1, 1);
+        neural_network.randomizeWeights(0, 1);
     }
 
 
@@ -263,6 +263,16 @@ public class Algo_Generic_AI implements Brain {
                 weights_of_new_network[weight_id] += ThreadLocalRandom.current().nextDouble(-mutation_range, +mutation_range);
 
             }
+
+            //We check if the weight has gotten bigger than 1
+            if(weights_of_new_network[weight_id] > 1){
+                weights_of_new_network[weight_id] = 1;
+            }
+
+            //We check if the weight has gotten smaller than 0
+            if(weights_of_new_network[weight_id] < 0){
+                weights_of_new_network[weight_id] = 0;
+            }
         }
 
         //Sets the weights of the new neural network
@@ -340,7 +350,7 @@ public class Algo_Generic_AI implements Brain {
         long test_results_every_milliseconds = 1000;
 
         //By how much we allow the new neural network to be off
-        double allowed_error = 0.05;
+        double allowed_error = 0.0001;
 
         /*
             We tell the AI to learn in a new thread. If we do so our program will continue running. This allows us to have a
