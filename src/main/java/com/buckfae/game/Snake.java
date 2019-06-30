@@ -80,7 +80,7 @@ public class Snake {
             fields.add(0, new Integer[]{random_x_pos, random_y_pos + i});
             game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
         }
-        
+
         //Adds all fields to the last fields
         last_fields.addAll(fields);
 

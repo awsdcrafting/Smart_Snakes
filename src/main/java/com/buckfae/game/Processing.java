@@ -17,7 +17,7 @@ public class Processing extends PApplet {
 
         //--------Main Window-------------
         //How many games there should be
-        public static int population_size = 1500;
+        public static int population_size = 1000;
 
         //How big the window should be
         public int main_window_size_x = 1000;
@@ -259,7 +259,7 @@ public class Processing extends PApplet {
                         }
 
                         //Logs total amount of games
-                        System.out.println("Games total: " + games.size());
+                        System.out.println("Games total: " + games.size() + "\n\n");
                     }
                 }
                 //We drew enough games

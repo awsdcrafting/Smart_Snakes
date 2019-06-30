@@ -20,7 +20,7 @@ public class Algo_Generic_AI implements Brain {
     public static int generation = 0;
 
     static int mutation_rate = 3; //Mutation rate in percent
-    static double mutation_range = 0.1; //Range of mutation
+    static double mutation_range = 0.05; //Range of mutation
 
     //If this is true, we will generate bigger brains
     public static boolean generate_bigger_brains = false;
@@ -43,7 +43,7 @@ public class Algo_Generic_AI implements Brain {
         neural_network = new MultiLayerPerceptron(neurons_count);
 
         //We randomize the weights of the network between 0 and 1
-        neural_network.randomizeWeights(0, 1);
+        neural_network.randomizeWeights(-1, 1);
     }
 
 
@@ -258,21 +258,12 @@ public class Algo_Generic_AI implements Brain {
             }
 
             //We now mutate the weight
-            if (random.nextInt(101) <= mutation_rate) {
+            if ((random.nextInt(100) + 1) <= mutation_rate) {
                 //We add/substract a random number within the mutation range
                 weights_of_new_network[weight_id] += ThreadLocalRandom.current().nextDouble(-mutation_range, +mutation_range);
 
             }
 
-            //We check if the weight has gotten bigger than 1
-            if(weights_of_new_network[weight_id] > 1){
-                weights_of_new_network[weight_id] = 1;
-            }
-
-            //We check if the weight has gotten smaller than 0
-            if(weights_of_new_network[weight_id] < 0){
-                weights_of_new_network[weight_id] = 0;
-            }
         }
 
         //Sets the weights of the new neural network
