@@ -44,7 +44,7 @@ public class AI_Handler {
                     break;
                 case 2:
                     //The generic AI expects us to give him an initial amount of neurons per layer
-                    ArrayList<Integer> hidden_layer_neuron_count = new ArrayList<Integer>(Arrays.asList(24, 24, 24));
+                    ArrayList<Integer> hidden_layer_neuron_count = new ArrayList<Integer>(Arrays.asList(24));
                     game.snake.brain = new Algo_Generic_AI(21, hidden_layer_neuron_count, 3);
                     break;
                 case 3:

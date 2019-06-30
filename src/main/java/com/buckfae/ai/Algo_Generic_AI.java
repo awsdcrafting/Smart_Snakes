@@ -19,8 +19,8 @@ public class Algo_Generic_AI implements Brain {
     //The generation we are currently at
     public static int generation = 0;
 
-    static int mutation_rate = 3; //Mutation rate in percent
-    static double mutation_range = 0.05; //Range of mutation
+    static int mutation_rate = 7; //Mutation rate in percent
+    static double mutation_range = 0.2; //Range of mutation
 
     //If this is true, we will generate bigger brains
     public static boolean generate_bigger_brains = false;
