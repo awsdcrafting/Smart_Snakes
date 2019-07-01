@@ -236,12 +236,6 @@ public class Snake {
 
                 }
 
-                //update head
-                game.fields[head[0]][head[1]].isSnakeHead = false;
-                head[0] += new_front_field_coordinates_modifier[0];
-                head[1] += new_front_field_coordinates_modifier[1];
-                game.fields[head[0]][head[1]].isSnakeHead = true;
-
 
                 //Checks if this field is out of bounds -> Snake hit a wall
                 if (fields.get(0)[0] + new_front_field_coordinates_modifier[0] < 0
@@ -254,6 +248,7 @@ public class Snake {
                     died_to = 1;
                 }
                 //We didn't crash into a wall
+
 
 
                 //Loops through all fields and checks if two have the same coordinates now
@@ -276,6 +271,11 @@ public class Snake {
                 //Our own move won't kill us
                 if (!is_dead) {
 
+                    //update head
+                    game.fields[head[0]][head[1]].isSnakeHead = false;
+                    head[0] += new_front_field_coordinates_modifier[0];
+                    head[1] += new_front_field_coordinates_modifier[1];
+                    game.fields[head[0]][head[1]].isSnakeHead = true;
 
                     //Adds the new field, color will be set later
                     fields.add(0, new Integer[]{fields.get(0)[0] + new_front_field_coordinates_modifier[0], fields.get(0)[1] + new_front_field_coordinates_modifier[1]});
