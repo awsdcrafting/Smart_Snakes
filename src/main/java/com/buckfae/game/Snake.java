@@ -73,6 +73,7 @@ public class Snake {
             for(Field field: fields){
                 field.is_snake = false;
                 field.is_food = false;
+                field.isSnakeHead = false;
             }
         }
 
