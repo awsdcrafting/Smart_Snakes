@@ -27,7 +27,7 @@ public class Processing extends PApplet {
         public static int size_of_one_game = 100;  //The games are sqares
 
         public int space_between_games_x = 20;
-        public int space_between_games_y = 60;
+        public int space_between_games_y = 20;
 
         //Space between the games and the border of the window
         public int spaces_to_side[] = {50, 50, 50, 50}; // Left, Right, Up, Down
@@ -253,11 +253,6 @@ public class Processing extends PApplet {
                         System.out.println("We created all visible games, creating invisible ones now");
                         System.out.println("Games visible: " + games.size());
 
-                        //creates the rest of the games
-                        for (int i = games.size(); i < population_size; i++) {
-                            games.add(new Game(new_game_x, new_game_y, false));
-                        }
-
                         //Logs total amount of games
                         System.out.println("Games total: " + games.size() + "\n\n");
                     }
@@ -269,6 +264,11 @@ public class Processing extends PApplet {
                 }
             }
         }
+
+        //creates the rest of the games
+        for (int i = games.size(); i < population_size; i++) {
+            games.add(new Game(-1, -1, false));
+        }
     }
 
     //Call this method to switch two random snakes
@@ -277,5 +277,11 @@ public class Processing extends PApplet {
         if(random.nextInt(100) < 10){
             Game.switch_two_games_position(games.get(random.nextInt(games.size() - 1)), games.get(random.nextInt(games.size() - 1)));
         }
+    }
+
+    //increases the size of a game
+    public void increaseGameSize(int amount)
+    {
+        size_of_one_game += (10 * amount);
     }
 }
