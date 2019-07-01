@@ -11,6 +11,7 @@ public class Field {
 
     public boolean is_snake = false;
     public boolean is_food = false;
+    public boolean isSnakeHead = false;
 
 
     Game game;
@@ -38,7 +39,9 @@ public class Field {
         Processing.processing.stroke(black.getRGB());
 
         //Sets the color of the field depending on the type
-        if(is_snake){
+        if (isSnakeHead){
+            Processing.processing.fill(blue.getRGB());
+        } else if(is_snake){
             Processing.processing.fill(red.getRGB());
         } else if (is_food) {
             Processing.processing.fill(green.getRGB());

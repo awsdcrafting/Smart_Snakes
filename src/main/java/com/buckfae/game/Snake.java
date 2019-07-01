@@ -41,6 +41,9 @@ public class Snake {
     //x and y position of the food
     public int[] food = new int[2];
 
+    //x and y position of the head
+    public int[] head = new int[2];
+
     //Iterations the game waits till it replaces a dead snake with a new one
     public int frames_till_replace = 50;
 
@@ -230,6 +233,13 @@ public class Snake {
                         break;
 
                 }
+
+                //update head
+                game.fields[head[0]][head[1]].isSnakeHead = false;
+                head[0] += new_front_field_coordinates_modifier[0];
+                head[1] += new_front_field_coordinates_modifier[1];
+                game.fields[head[0]][head[1]].isSnakeHead = true;
+
 
                 //Checks if this field is out of bounds -> Snake hit a wall
                 if (fields.get(0)[0] + new_front_field_coordinates_modifier[0] < 0
