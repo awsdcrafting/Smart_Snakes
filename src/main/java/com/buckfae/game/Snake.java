@@ -67,8 +67,6 @@ public class Snake {
         Random random = new Random();
         int random_x_pos = random.nextInt(game.fields.length);
         int random_y_pos = random.nextInt(game.fields.length - 4) + 2;
-        head[0] = random_x_pos;
-        head[1] = random_y_pos;
 
         //Ensures that we have a clear game at the beginning
         for(Field[] fields: game.fields){
@@ -84,6 +82,8 @@ public class Snake {
             fields.add(0, new Integer[]{random_x_pos, random_y_pos + i});
             game.fields[fields.get(0)[0]][fields.get(0)[1]].is_snake = true;
         }
+        head[0] = fields.get(0)[0];
+        head[1] = fields.get(0)[1];
         game.fields[head[0]][head[1]].isSnakeHead = true;
 
         //Adds all fields to the last fields
