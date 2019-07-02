@@ -24,7 +24,7 @@ public class Processing extends PApplet {
         public int main_window_size_y = 1000;
 
         //The size of one game, should be a multiple of ten as one sqare in the game itself has a size of 10
-        public static int size_of_one_game = 100;  //The games are sqares
+        public static int defaultGameSize = 100;    //The games are sqares
 
         public int space_between_games_x = 20;
         public int space_between_games_y = 20;
@@ -45,6 +45,13 @@ public class Processing extends PApplet {
         //You can call this Papplet from any class to do processing stuff from other classes.
         public static PApplet processing;
 
+        private static Processing instance;
+
+        public static Processing getInstance()
+        {
+            return instance;
+        }
+
         //All games are stored here
         public static ArrayList<Game> games;
 
@@ -64,7 +71,7 @@ public class Processing extends PApplet {
 
     //Is called by main to initialize Processing
     public void initialize_processing(){
-
+        instance = this;
         //Initializes processing
         String[] processingArgs = {""};
         processing = new Processing();
@@ -82,7 +89,7 @@ public class Processing extends PApplet {
         frameRate(60);
 
         //Calculates the dimensions of the game
-        setup_calculate_game_dimensions();
+        createGames();
 
         //Gives all snakes their Brains
         ai_handler  = new AI_Handler();
@@ -185,6 +192,18 @@ public class Processing extends PApplet {
         text(text, x, y);
     }
 
+    public void createGames(){
+
+        //Initializes the games
+        games = new ArrayList<>();
+
+        for (int i = 0; i < population_size; i++) {
+            games.add(new Game(-1, -1, false));
+        }
+
+        setup_calculate_game_dimensions();
+    }
+
     public void setup_calculate_game_dimensions(){
 
         //How much space on the (x/y)-Axis one game needs
@@ -217,11 +236,14 @@ public class Processing extends PApplet {
         System.out.println("We have " + space_left_x + " pixels left on the x-Axis");
         System.out.println("We have " + space_left_y + " pixels left on the y-Axis");
 
-        //Initializes the games
-        games = new ArrayList<Game>();
 
         //tracks how many games we created yet
         int amount_of_games_created = 0;
+
+        for (Game game : games)
+        {
+            game.is_currently_shown = false;
+        }
 
         //Creates all games and sets their coordinates
         loop_game_x:
@@ -239,23 +261,11 @@ public class Processing extends PApplet {
                             + (games_y * (size_of_one_game + space_between_games_y));
 
                     //We still have room to display a game
-                    if (games_x != amount_of_games_x - 1 || games_y != amount_of_games_y - 1) {
-                        games.add(new Game(new_game_x, new_game_y, true));
-                    }
-
-                    //We can't display more games
-                    else {
-
-                        //Creates the last visible game
-                        games.add(new Game(new_game_x, new_game_y, true));
-
-                        //Tells the user about the remaining games
-                        System.out.println("We created all visible games, creating invisible ones now");
-                        System.out.println("Games visible: " + games.size());
-
-                        //Logs total amount of games
-                        System.out.println("Games total: " + games.size() + "\n\n");
-                    }
+                    boolean show = games_x != amount_of_games_x - 1 || games_y != amount_of_games_y - 1;
+                    Game currentGame = games.get(amount_of_games_created);
+                    currentGame.is_currently_shown = show;
+                    currentGame.game_x = new_game_x;
+                    currentGame.game_y = new_game_y;
                 }
                 //We drew enough games
                 else {
@@ -264,11 +274,9 @@ public class Processing extends PApplet {
                 }
             }
         }
+        //Logs total amount of games
+        System.out.println("Games total: " + games.size() + "\n\n");
 
-        //creates the rest of the games
-        for (int i = games.size(); i < population_size; i++) {
-            games.add(new Game(-1, -1, false));
-        }
     }
 
     //Call this method to switch two random snakes
@@ -280,8 +288,43 @@ public class Processing extends PApplet {
     }
 
     //increases the size of a game
-    public void increaseGameSize(int amount)
+    public static void increaseGameSize(int amount)
     {
         size_of_one_game += (10 * amount);
+    }
+
+    //the multiplier by which the board should be increased
+    public static double defaultMultiplier = 1.1;
+    //every x generations the board will be increased in its size
+    public static int generationMultiplier = 15;
+    public static int size_of_one_game = defaultGameSize;
+    //the max size of the game board
+    public static int maxGameSize = roundToTen(defaultGameSize * 25);
+
+    public static void multiplyGameSize(){
+        multiplyGameSize(defaultMultiplier);
+    }
+
+    public static void multiplyGameSize(double multiplier)
+    {
+        size_of_one_game = roundToTen(size_of_one_game * multiplier);
+        if (size_of_one_game > maxGameSize){
+            size_of_one_game = maxGameSize;
+        }
+    }
+
+    public static int roundToTen(double d){
+       return roundToTen((int)d);
+    }
+
+    public static int roundToTen(int i){
+        int r = i % 10;
+        if (r<5)
+        {
+            i -= r;
+        }else{
+            i += 10 - r;
+        }
+        return i;
     }
 }

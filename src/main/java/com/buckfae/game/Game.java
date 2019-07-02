@@ -1,5 +1,7 @@
 package com.buckfae.game;
 
+import com.buckfae.ai.Brain;
+
 import java.util.Collections;
 
 import static java.awt.Color.black;
@@ -31,6 +33,15 @@ public class Game {
         this.generate_grid();
 
         this.snake = new Snake(this);
+    }
+
+    public void recreateGrid(boolean snake){
+        this.generate_grid();
+        if(snake){
+            Brain brain = this.snake.brain;
+            this.snake = new Snake(this);
+            this.snake.brain = brain;
+        }
     }
 
 
