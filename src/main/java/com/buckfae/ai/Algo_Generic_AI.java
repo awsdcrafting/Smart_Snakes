@@ -198,11 +198,16 @@ public class Algo_Generic_AI implements Brain {
         }
 
         avg_score /= Processing.games.size();
+
+        Random random = new Random();
+        long seed = random.nextLong();
+
         System.out.println("Size of the game board: " + (Processing.size_of_one_game/10));
         System.out.println("Avg length in Generation " + generation + ": " + avg_score);
         System.out.println("Snakes died to wall: " + died_to_wall);
         System.out.println("Snakes died to own body " + died__to_self);
         System.out.println("Snakes died out of steps " + died_to_steps);
+        System.out.println("Next seed: " + seed);
         System.out.println();
         System.out.println();
 
@@ -216,7 +221,6 @@ public class Algo_Generic_AI implements Brain {
         }
 
         //Used for randomizing
-        Random random = new Random();
 
         for (Game game : Processing.games) {
 
@@ -225,7 +229,7 @@ public class Algo_Generic_AI implements Brain {
             }
 
             //Resets the Snake
-            game.snake = new Snake(game);
+            game.snake = new Snake(game,seed);
 
             //Gets two random parents for the Snakes
             Algo_Generic_AI parent_one = brain_pool.get(random.nextInt(brain_pool.size()));

@@ -171,7 +171,6 @@ public class Processing extends PApplet {
                 main_window_size_y - spaces_to_side[2] - spaces_to_side[3]);
 
         displayText("Games", spaces_to_side[0], spaces_to_side[2] - 3);
-
         //Draws all games
         for(Game game: games){
                 game.draw_game();
@@ -261,9 +260,8 @@ public class Processing extends PApplet {
                             + (games_y * (size_of_one_game + space_between_games_y));
 
                     //We still have room to display a game
-                    boolean show = games_x != amount_of_games_x - 1 || games_y != amount_of_games_y - 1;
                     Game currentGame = games.get(amount_of_games_created);
-                    currentGame.is_currently_shown = show;
+                    currentGame.is_currently_shown = true;
                     currentGame.game_x = new_game_x;
                     currentGame.game_y = new_game_y;
                 }
@@ -274,6 +272,8 @@ public class Processing extends PApplet {
                 }
             }
         }
+        System.out.println("Games shown: " + amount_of_games_created);
+
         //Logs total amount of games
         System.out.println("Games total: " + games.size() + "\n\n");
 
@@ -299,7 +299,7 @@ public class Processing extends PApplet {
     public static int generationMultiplier = 15;
     public static int size_of_one_game = defaultGameSize;
     //the max size of the game board
-    public static int maxGameSize = roundToTen(defaultGameSize * 25);
+    public static int maxGameSize = roundToTen(defaultGameSize * 2.5);
 
     public static void multiplyGameSize(){
         multiplyGameSize(defaultMultiplier);
@@ -314,7 +314,7 @@ public class Processing extends PApplet {
     }
 
     public static int roundToTen(double d){
-       return roundToTen((int)d);
+       return roundToTen((int)Math.round(d));
     }
 
     public static int roundToTen(int i){

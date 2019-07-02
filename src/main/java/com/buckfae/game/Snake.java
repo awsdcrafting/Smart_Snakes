@@ -52,9 +52,16 @@ public class Snake {
     //Tracks the last distance to food, score increases if we got closer and decreses otherwise
     double last_distance_to_food = Double.MAX_VALUE;
 
+    private Random random;
+    public long seed;
 
-    public Snake(Game game) {
+    public Snake(Game game){
+        this(game,0);
+    }
 
+    public Snake(Game game,long seed) {
+        this.seed = seed;
+        random = new Random(seed);
         //Sets the value to the maximum amount of moves
         die_after_steps = game.fields.length * game.fields.length;
 
@@ -548,7 +555,6 @@ public class Snake {
 
     public void generate_new_food(){
 
-        Random random = new Random();
 
         //Removes the old food from the fields
         game.fields[fields.get(0)[0]][fields.get(0)[1]].is_food = false;

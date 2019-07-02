@@ -20,7 +20,7 @@ public class Algo_Played_By_Human implements Brain{
         for(Game game: Processing.games){
 
             //Resets the Snake
-            game.snake = new Snake(game);
+            game.snake = new Snake(game,0);
 
             //Generates a new Brain
             Brain new_brain = new Algo_Played_By_Human();

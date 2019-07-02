@@ -30,7 +30,7 @@ public class Algo_Always_Move_The_Same_Way implements Brain {
         for(Game game: Processing.games){
 
             //Resets the Snake
-            game.snake = new Snake(game);
+            game.snake = new Snake(game,0);
 
             //Generates a new Brain
             Brain new_brain = new Algo_Always_Move_The_Same_Way();

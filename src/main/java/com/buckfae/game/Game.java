@@ -32,14 +32,15 @@ public class Game {
         //generates the grid
         this.generate_grid();
 
-        this.snake = new Snake(this);
+        this.snake = new Snake(this,0);
     }
 
     public void recreateGrid(boolean snake){
         this.generate_grid();
         if(snake){
             Brain brain = this.snake.brain;
-            this.snake = new Snake(this);
+            long seed = this.snake.seed;
+            this.snake = new Snake(this,seed);
             this.snake.brain = brain;
         }
     }
